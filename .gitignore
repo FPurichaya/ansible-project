@@ -1,0 +1,27 @@
+# Dependency directories
+node_modules/
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Packaged tarballs
+*.tgz
+
+# Unzipped package folder 
+nodejs-app/package/
+
+# Credentials / Secrets 
+project-vars
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+
+# Ansible configuration and playbooks
+ansible.cfg
+hosts
+*.yaml
+*.yml

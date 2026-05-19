@@ -19,9 +19,3 @@ project-vars
 .DS_Store
 Thumbs.db
 
-
-# Ansible configuration and playbooks
-ansible.cfg
-hosts
-*.yaml
-*.yml

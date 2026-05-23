@@ -1,6 +1,21 @@
 ---
+- name: Wait for SSH connection
+  hosts: tag_Name_prod_server
+  gather_facts: False
+  tasks: 
+    - name: Ensure SSH port open
+      wait_for: 
+        port: 22
+        delay: 10
+        timeout: 600
+        search_regex: OpenSSH
+        host: '{{ (ansible_ssh_host|default(ansible_host))|default(inventory_hostname) }}'
+      vars:
+        ansible_connection: local
+        ansible_python_interpreter: /usr/bin/python3
+
 - name: Install docker
-  hosts: docker_server
+  hosts: tag_Name_prod_server
   become: yes
   tasks:
     - name: Ensure docker is installed
@@ -14,7 +29,7 @@
         state: started
 
 - name: Create new linux user
-  hosts: docker_server
+  hosts: tag_Name_prod_server
   become: yes
   vars_files:
     - project-vars.yaml
@@ -25,7 +40,7 @@
         groups: "{{user_groups}}"
 
 - name: Install docker-compose
-  hosts: docker_server
+  hosts: tag_Name_prod_server
   become: yes
   become_user: jeepek
   tasks: 
@@ -43,7 +58,7 @@
         mode: +x
 
 - name: Start docker containers
-  hosts: docker_server
+  hosts: tag_Name_prod_server
   become: yes
   become_user: jeepek
   vars_files:

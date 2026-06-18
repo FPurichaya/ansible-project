@@ -53,6 +53,3 @@
       register: app_status
     - debug: msg={{app_status}}
 
-    #/Users/jeepek/ansible-project
-    #1.0.0
-    # /home/jeep
